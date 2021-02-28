@@ -1,11 +1,11 @@
 const { Client } = require("pg");
 
 const config = {
-  user: "kziasgkc",
-  host: "ziggy.db.elephantsql.com",
-  database: "kziasgkc",
-  password: "1EZqcMS8yxIXu6oqs2O3Yym4iUE1sVSI",
-  port: 5432,
+  user: process.env.GRAT_USER,
+  host: process.env.GRAT_HOST,
+  database: process.env.GRAT_DATABASE,
+  password: process.env.GRAT_PASSWORD,
+  port: process.env.GRAT_PORT,
 };
 
 const client = new Client(config);
