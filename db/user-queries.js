@@ -22,4 +22,16 @@ const getUserByEmail = (email) => {
     });
 };
 
-module.exports = { getAllUsers, getUserById, getUserByEmail };
+const addUser = (email, username, password) => {
+  return client
+    .query("INSERT INTO users(email, username, password) VALUES($1,$2,$3)", [
+      email,
+      username,
+      password,
+    ])
+    .then((res) => {
+      console.log("added");
+    });
+};
+
+module.exports = { getAllUsers, getUserById, getUserByEmail, addUser };

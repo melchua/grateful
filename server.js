@@ -7,6 +7,7 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
 const villainRouter = require("./routes/villains");
+const userRouter = require("./routes/users");
 require("./config/passport")(passport);
 
 const port = process.env.PORT || 7865;
@@ -46,8 +47,8 @@ app.use((req, res, next) => {
 
 //Routes
 app.use("/", require("./routes/index"));
-app.use("/users", require("./routes/users"));
 app.use("/villains", villainRouter);
+app.use("/users", userRouter);
 
 app.listen(port, () => {
   console.log("app is listening on port ", port);

@@ -1,6 +1,6 @@
-const User = require("../models/user.js");
 const express = require("express");
 const router = express.Router();
+const userqueries = require("../db/user-queries.js");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 // login handle
@@ -16,7 +16,7 @@ router.get("/register", (req, res) => {
 router.post("/register", (req, res) => {
   const { name, email, password, password2 } = req.body;
   let errors = [];
-  console.log(" Name " + name + " email :" + email + " pass:" + password);
+  // console.log(" Name " + name + " email :" + email + " pass:" + password);
   if (!name || !email || !password || !password2) {
     errors.push({ msg: "Please fill in all fields" });
   }
@@ -40,8 +40,9 @@ router.post("/register", (req, res) => {
     // res.json({ errors: errors });
   } else {
     //validation passed
-    User.findOne({ email: email }).exec((err, user) => {
-      console.log(user);
+
+    // check if user exists
+    userqueries.getUserByEmail(email).then((user) => {
       if (user) {
         errors.push({ msg: "email already registered" });
         res.render("register", {
@@ -52,38 +53,32 @@ router.post("/register", (req, res) => {
           password2: password2,
         });
       } else {
-        const newUser = new User({
-          name: name,
-          email: email,
-          password: password,
-        });
-
         bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(newUser.password, salt, (err, hash) => {
+          bcrypt.hash(password, salt, (err, hash) => {
             if (err) throw err;
             //save hash to pass
-            newUser.password = hash;
+            const newPassword = hash;
             // save user
-            newUser
-              .save()
+            userqueries
+              .addUser(email, name, newPassword)
               .then((value) => {
-                console.log(value);
                 req.flash("success_msg", "You have now registered!");
                 res.redirect("/users/login");
               })
-              .catch((value) => console.log(value));
+              .catch((value) => console.log("err", value));
           });
         });
       }
     });
   }
 });
-router.post("/login", (req, res) => {
+
+router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
-    successRedirect: "/dashboard",
     failureRedirect: "/users/login",
     failureFlash: true,
-  })(req, res); //next?
+    successRedirect: "/dashboard",
+  })(req, res, next);
 });
 
 // logout
@@ -92,5 +87,23 @@ router.get("/logout", (req, res) => {
   req.flash("success_msg", "Now logged out");
   res.redirect("/users/login");
 });
+
+module.exports = router;
+
+// GET /users/
+router.get("/", (req, res) => {
+  userqueries.getAllUsers((users) => {
+    res.json(users);
+  });
+});
+
+// GET /users/:id
+router.get("/:id", (req, res) => {
+  userqueries.getUserById(req.params.id).then((user) => {
+    res.json(user);
+  });
+});
+
+// POST /users/
 
 module.exports = router;
