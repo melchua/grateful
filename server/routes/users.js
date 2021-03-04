@@ -17,10 +17,10 @@ router.get('/auth/google',
   passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
 
 router.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/login' }),
+  passport.authenticate('google', { failureRedirect: '/users/login' }),
   function(req, res) {
     console.log('reqbody~~~', req.body)
-    res.redirect('/');
+    res.redirect('/dashboard');
   });
 
 // register handle
