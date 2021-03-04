@@ -4,8 +4,8 @@ const userqueries = require("../db/user-queries");
 
 module.exports = function (passport) {
   passport.use(new GoogleStrategy({
-    clientID: GOOGLE_CLIENT_ID,
-    clientSecret: GOOGLE_CLIENT_SECRET,
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "http://localhost:7865/auth/google/callback"
   },
     function(accessToken, refreshToken, profile, done) {
@@ -14,4 +14,8 @@ module.exports = function (passport) {
         });
     }
   ));
+
+  passport.serializeUser(function (user, done) {
+    done(null, user.id);
+  });
 }
