@@ -12,6 +12,20 @@ router.get("/register", (req, res) => {
   res.render("register");
 });
 
+// login passport-google
+router.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/users/login" }),
+  function (req, res) {
+    res.redirect("/dashboard");
+  }
+);
+
 // register handle
 router.post("/register", (req, res) => {
   const { name, email, password, password2 } = req.body;
