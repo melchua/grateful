@@ -6,12 +6,10 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
 const userRouter = require("./routes/users");
-// changing to use google passport
 require("./config/passport-google")(passport);
-// original
-// require("./config/passport")(passport);
+require("./config/passport")(passport);
 
-const port = process.env.PORT || 7865;
+const port = parseInt(process.env.GRAT_PORT) || 7865;
 
 //EJS
 app.set("view engine", "ejs");

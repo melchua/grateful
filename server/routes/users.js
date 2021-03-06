@@ -13,15 +13,18 @@ router.get("/register", (req, res) => {
 });
 
 // login passport-google
-router.get('/auth/google',
-  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+router.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
 
-router.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/users/login' }),
-  function(req, res) {
-    console.log('reqbody~~~', req.body)
-    res.redirect('/dashboard');
-  });
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/users/login" }),
+  function (req, res) {
+    res.redirect("/dashboard");
+  }
+);
 
 // register handle
 router.post("/register", (req, res) => {
