@@ -5,11 +5,13 @@ const config = {
   host: process.env.GRAT_HOST,
   database: process.env.GRAT_DATABASE,
   password: process.env.GRAT_PASSWORD,
-  port: process.env.GRAT_PORT,
+  port: process.env.DB_PORT,
 };
 
 const client = new Client(config);
 
-client.connect();
+client.connect().catch((err) => {
+  console.log("Database connection not working");
+});
 
 module.exports = client;

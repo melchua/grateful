@@ -21,7 +21,6 @@ module.exports = function (passport) {
 
   // fake user right now before we decide what we are doing with google users
   passport.deserializeUser(function (id, done) {
-    console.log("Deserialize user called.");
     done(null, { firstName: "Foo", lastName: "Bar" });
   });
 };
