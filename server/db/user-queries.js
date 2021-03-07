@@ -34,4 +34,21 @@ const addUser = (email, username, password) => {
     });
 };
 
-module.exports = { getAllUsers, getUserById, getUserByEmail, addUser };
+const getGratitudesByUserId = (user_id) => {
+  return client
+    .query(
+      "select users.id, description FROM gratitudes JOIN users ON users.id = user_id WHERE user_id = $1",
+      [parseInt(user_id)]
+    )
+    .then((response) => {
+      return response.rows;
+    });
+};
+
+module.exports = {
+  getAllUsers,
+  getUserById,
+  getUserByEmail,
+  addUser,
+  getGratitudesByUserId,
+};
