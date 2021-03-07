@@ -1,12 +1,11 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import { useState } from "react";
+import Head from 'next/head';
+import { React, useState } from 'react';
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
   const handleInputChange = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
     setInputValue(e.target.value);
   };
 
@@ -22,7 +21,7 @@ export default function Home() {
         <form className={styles.gratefulForm}>
           Input a gratitude, receive a text when you most need it.
           <textarea
-            autofocus
+            autoFocus
             placeholder="I am grateful for..."
             className={styles.inputGratitude}
             rows={3}
@@ -38,7 +37,7 @@ export default function Home() {
         </form>
       </main>
 
-      <footer className={styles.footer}></footer>
+      <footer className={styles.footer} />
     </div>
   );
 }
