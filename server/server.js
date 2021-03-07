@@ -15,8 +15,25 @@ const port = parseInt(process.env.GRAT_PORT) || 7865;
 app.set("view engine", "ejs");
 app.use(expressEjsLayout);
 
+// Use just for DEV to get around CORS
+if (process.env.ENVIRONMENT === "development") {
+  app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    res.header(
+      "Access-Control-Allow-Methods",
+      "PUT, POST, GET, DELETE, OPTIONS"
+    );
+    return next();
+  });
+}
+
 //body parser
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
     secret: "secret",
