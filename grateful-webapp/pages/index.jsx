@@ -1,9 +1,9 @@
-import Head from 'next/head';
-import { React, useState } from 'react';
-import styles from '../styles/Home.module.css';
+import Head from "next/head";
+import { React, useState } from "react";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const handleInputChange = (e) => {
     e.preventDefault();
     setInputValue(e.target.value);
@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Grateful App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
