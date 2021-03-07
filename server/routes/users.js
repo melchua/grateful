@@ -102,8 +102,6 @@ router.get("/logout", (req, res) => {
   res.redirect("/users/login");
 });
 
-module.exports = router;
-
 // GET /users/
 router.get("/", (req, res) => {
   userqueries.getAllUsers((users) => {
@@ -118,6 +116,10 @@ router.get("/:id", (req, res) => {
   });
 });
 
-// POST /users/
-
+// GET /users/gratitudes/:user_id
+router.get("/gratitudes/:id", (req, res) => {
+  userqueries.getGratitudesByUserId(req.params.id).then((gratitudes) => {
+    res.json(gratitudes);
+  });
+});
 module.exports = router;
