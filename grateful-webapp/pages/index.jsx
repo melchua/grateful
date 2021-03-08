@@ -2,12 +2,22 @@ import Head from "next/head";
 import { React, useState } from "react";
 import styles from "../styles/Home.module.css";
 import MessageButton from "./MessageButton";
+import { postGratitude } from "../services/gratitudes";
 
 export default function Home() {
   const [inputValue, setInputValue] = useState("");
+  // HARD CODE: userId for now until registration/login
+  // is setup on frontend
+  // Once setup, we can use Context to store the current user
+  const [userId, setUserId] = useState(1);
   const handleInputChange = (e) => {
     e.preventDefault();
     setInputValue(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    postGratitude(userId, inputValue);
+    setInputValue("");
   };
 
   return (
@@ -31,8 +41,13 @@ export default function Home() {
             value={inputValue}
             onChange={(e) => handleInputChange(e)}
             maxLength={250}
+            name="description"
           />
-          <button className={styles.submitButton} type="submit">
+          <button
+            className={styles.submitButton}
+            type="submit"
+            onClick={handleSubmit}
+          >
             Give Gratitude
           </button>
         </form>

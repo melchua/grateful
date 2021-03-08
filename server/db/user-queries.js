@@ -34,6 +34,21 @@ const addUser = (email, username, password) => {
     });
 };
 
+const addGratitudeByUserId = (user_id, description) => {
+  return client
+    .query("INSERT INTO gratitudes(user_id, description) VALUES($1, $2)", [
+      user_id,
+      description,
+    ])
+    .then((res) => {
+      console.log("gratitude added");
+    })
+    .catch((err) => {
+      console.log("err", err);
+      return err;
+    });
+};
+
 const getGratitudesByUserId = (user_id) => {
   return client
     .query(
@@ -51,4 +66,5 @@ module.exports = {
   getUserByEmail,
   addUser,
   getGratitudesByUserId,
+  addGratitudeByUserId,
 };
