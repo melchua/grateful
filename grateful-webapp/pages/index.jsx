@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { React, useState } from "react";
 import styles from "../styles/Home.module.css";
+import MessageButton from "./MessageButton";
 
 export default function Home() {
   const [inputValue, setInputValue] = useState("");
@@ -36,7 +37,7 @@ export default function Home() {
           </button>
         </form>
       </main>
-
+      <MessageButton />
       <footer className={styles.footer} />
     </div>
   );
