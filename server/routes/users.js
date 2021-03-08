@@ -122,4 +122,11 @@ router.get("/gratitudes/:id", (req, res) => {
     res.json(gratitudes);
   });
 });
+
+// POST /users/gratitudes/
+router.post("/gratitudes/", (req, res) => {
+  userqueries.addGratitudeByUserId(req.body.user_id, req.body.description);
+  res.status(201).send();
+});
+
 module.exports = router;
