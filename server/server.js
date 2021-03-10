@@ -10,27 +10,11 @@ const messagesRouter = require("./routes/messages");
 require("./config/passport-google")(passport);
 require("./config/passport")(passport);
 
-const port = parseInt(process.env.GRAT_PORT) || 7865;
+const port = parseInt(process.env.GRAT_PORT) || 7080;
 
 //EJS
 app.set("view engine", "ejs");
 app.use(expressEjsLayout);
-
-// Use just for DEV to get around CORS
-if (process.env.ENVIRONMENT === "development") {
-  app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    res.header(
-      "Access-Control-Allow-Methods",
-      "PUT, POST, GET, DELETE, OPTIONS"
-    );
-    return next();
-  });
-}
 
 //body parser
 app.use(express.json());

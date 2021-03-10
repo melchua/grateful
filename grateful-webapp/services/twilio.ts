@@ -9,7 +9,7 @@ function sendGratitude(gratitude: string, phoneNumber: string) {
     to: phoneNumber,
     body: gratitude,
   };
-  axios.post("http://localhost:7080/api/messages", message);
+  axios.post("/api/messages", message);
 }
 
 // sendGratitude(myGratitude, userPhoneNumber);

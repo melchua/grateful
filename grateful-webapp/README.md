@@ -16,7 +16,6 @@ This is the frontend portion for our webapp. Currently just this readme file to 
 
 ### Running for Development
 
-`yarn proxy` to start the dev-only proxy
 `yarn dev` to start the client
 
 We're going to use port 7000 for the client
