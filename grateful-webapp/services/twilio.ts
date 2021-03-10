@@ -1,15 +1,15 @@
-import axios from 'axios';
+import axios from "axios";
 
 // const myGratitude = 'I am grateful for Sunny days';
 // const userPhoneNumber = '+17789512508';
 
 function sendGratitude(gratitude: string, phoneNumber: string) {
-  console.log('message sent');
+  console.log("message sent");
   const message = {
     to: phoneNumber,
     body: gratitude,
   };
-  axios.post('http://localhost:7865/messages', message);
+  axios.post("http://localhost:7080/api/messages", message);
 }
 
 // sendGratitude(myGratitude, userPhoneNumber);

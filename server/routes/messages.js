@@ -1,17 +1,17 @@
-import express from "express";
+const express = require("express");
 const router = express.Router();
 
 // Twilio setup
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
-const client = require('twilio')(accountSid, authToken);
+const client = require("twilio")(accountSid, authToken);
 
 router.post("/", (req, res) => {
   client.messages
     .create({
       from: process.env.TWILIO_PHONE_NUMBER,
-      to: req.body.message.to,
-      body: req.body.message.body,
+      to: req.body.to,
+      body: req.body.body,
     })
     .then(() => {
       res.send(JSON.stringify({ success: true }));
@@ -21,3 +21,5 @@ router.post("/", (req, res) => {
       res.send(JSON.stringify({ success: false }));
     });
 });
+
+module.exports = router;
