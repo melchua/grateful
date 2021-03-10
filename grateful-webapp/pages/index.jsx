@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { React, useState } from "react";
 import styles from "../styles/Home.module.css";
+import MessageButton from "./MessageButton";
 import { postGratitude } from "../services/gratitudes";
 
 export default function Home() {
@@ -51,7 +52,7 @@ export default function Home() {
           </button>
         </form>
       </main>
-
+      <MessageButton />
       <footer className={styles.footer} />
     </div>
   );

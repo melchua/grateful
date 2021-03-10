@@ -14,6 +14,9 @@ This is the frontend portion for our webapp. Currently just this readme file to 
 - Axios
 - Husky
 
-### Running
+### Running for Development
 
-`yarn dev`
+`yarn dev` to start the client
+
+We're going to use port 7000 for the client
+And we're gonna use port 7080 for the node server
