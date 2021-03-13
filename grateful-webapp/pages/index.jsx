@@ -29,6 +29,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1>Grateful App</h1>
+        <div>HELLO</div>
         <form className={styles.gratefulForm}>
           Input a gratitude, receive a text when you most need it.
           <textarea
