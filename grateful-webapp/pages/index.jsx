@@ -1,14 +1,15 @@
-import Head from "next/head";
-import { React, useState } from "react";
-import styles from "../styles/Home.module.css";
-import MessageButton from "./MessageButton";
-import { postGratitude } from "../services/gratitudes";
+import Head from 'next/head';
+import { React, useState } from 'react';
+import styles from '../styles/Home.module.css';
+import MessageButton from '../components/MessageButton/MessageButton';
+import { postGratitude } from '../services/gratitudes';
 
 export default function Home() {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
   // HARD CODE: userId for now until registration/login
   // is setup on frontend
   // Once setup, we can use Context to store the current user
+  // eslint-disable-next-line
   const [userId, setUserId] = useState(1);
   const handleInputChange = (e) => {
     e.preventDefault();
@@ -17,7 +18,7 @@ export default function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
     postGratitude(userId, inputValue);
-    setInputValue("");
+    setInputValue('');
   };
 
   return (
@@ -29,7 +30,6 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1>Grateful App</h1>
-        <div>HELLO</div>
         <form className={styles.gratefulForm}>
           Input a gratitude, receive a text when you most need it.
           <textarea
