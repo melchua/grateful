@@ -4,6 +4,7 @@ CREATE TABLE gratitudes (
   id SERIAL PRIMARY KEY,
   description VARCHAR(250),
   user_id INTEGER, 
+  created_at timestamptz NOT NULL DEFAULT now(),
   CONSTRAINT fk_user
     FOREIGN KEY(user_id) 
       REFERENCES users(id)

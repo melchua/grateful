@@ -9,13 +9,14 @@ const userRouter = require("./routes/users");
 const messagesRouter = require("./routes/messages");
 require("./config/passport-google")(passport);
 require("./config/passport")(passport);
+var cors = require("cors");
 
 const port = parseInt(process.env.GRAT_PORT) || 7080;
 
 //EJS
 app.set("view engine", "ejs");
 app.use(expressEjsLayout);
-
+app.use(cors());
 //body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,6 +25,7 @@ app.use(
     secret: "secret",
     resave: true,
     saveUninitialized: true,
+    name: "grateful",
   })
 );
 app.use(passport.initialize());

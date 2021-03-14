@@ -14,6 +14,17 @@ const getUserById = (id) => {
     });
 };
 
+const getUserBySub = (sub) => {
+  return client
+    .query("SELECT * FROM users WHERE sub = $1;", [sub])
+    .then((response) => {
+      return response.rows[0];
+    })
+    .catch((err) => {
+      console.error("err", err);
+    });
+};
+
 const getUserByEmail = (email) => {
   return client
     .query("SELECT * FROM users WHERE email = $1", [email])
@@ -22,13 +33,9 @@ const getUserByEmail = (email) => {
     });
 };
 
-const addUser = (email, username, password) => {
+const addUserBySub = (sub) => {
   return client
-    .query("INSERT INTO users(email, username, password) VALUES($1,$2,$3)", [
-      email,
-      username,
-      password,
-    ])
+    .query("INSERT INTO users(sub) VALUES($1)", [sub])
     .then((res) => {
       console.log("added");
     });
@@ -36,12 +43,12 @@ const addUser = (email, username, password) => {
 
 const addGratitudeByUserId = (user_id, description) => {
   return client
-    .query("INSERT INTO gratitudes(user_id, description) VALUES($1, $2)", [
-      user_id,
-      description,
-    ])
+    .query(
+      "INSERT INTO gratitudes(user_id, description) VALUES($1, $2) RETURNING id, user_id, description",
+      [user_id, description]
+    )
     .then((res) => {
-      console.log("gratitude added");
+      return res.rows;
     })
     .catch((err) => {
       console.log("err", err);
@@ -52,7 +59,7 @@ const addGratitudeByUserId = (user_id, description) => {
 const getGratitudesByUserId = (user_id) => {
   return client
     .query(
-      "select users.id, description FROM gratitudes JOIN users ON users.id = user_id WHERE user_id = $1",
+      "select gratitudes.id, description, created_at FROM gratitudes JOIN users ON users.id = user_id WHERE user_id = $1",
       [parseInt(user_id)]
     )
     .then((response) => {
@@ -64,7 +71,8 @@ module.exports = {
   getAllUsers,
   getUserById,
   getUserByEmail,
-  addUser,
+  addUserBySub,
   getGratitudesByUserId,
   addGratitudeByUserId,
+  getUserBySub,
 };

@@ -1,15 +1,30 @@
 import axios from 'axios';
 // eslint-disable-next-line
-export const postGratitude = (user_id, description) => {
+export const postGratitude = async (userId, description) => {
   try {
-    axios
-      .post('/api/users/gratitudes/', {
-        user_id,
+    const posted = await axios.post(
+      `${process.env.NEXT_PUBLIC_NODE_SERVER}/api/users/gratitudes/`,
+      {
+        user_id: userId,
         description,
-      })
-      .then(() => {});
+      },
+    );
+    return posted;
   } catch (err) {
     // eslint-disable-next-line
     console.error("err", err);
   }
+};
+
+export const getGratitudesByUserId = async (userId) => {
+  try {
+    const gratitudes = await axios.get(
+      `${process.env.NEXT_PUBLIC_NODE_SERVER}/api/users/gratitudes/${userId}`,
+    );
+    return gratitudes;
+  } catch (err) {
+    // eslint-disable-next-line
+    console.error("err", err);
+  }
+  return [];
 };
