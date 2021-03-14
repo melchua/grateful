@@ -8,12 +8,12 @@ export const getUserBySub = async (sub) => {
         id: sub,
       },
     );
-
     return resp.data;
   } catch (err) {
     // eslint-disable-next-line
     console.error("err", err);
   }
+  return null;
 };
 
 export const addUserBySub = (sub) => {
