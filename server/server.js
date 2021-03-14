@@ -24,6 +24,7 @@ app.use(
     secret: "secret",
     resave: true,
     saveUninitialized: true,
+    name: "grateful",
   })
 );
 app.use(passport.initialize());

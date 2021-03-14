@@ -22,6 +22,7 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/users/login" }),
   function (req, res) {
+    console.log("google", res);
     res.redirect("/dashboard");
   }
 );
@@ -30,7 +31,6 @@ router.get(
 router.post("/register", (req, res) => {
   const { name, email, password, password2 } = req.body;
   let errors = [];
-  // console.log(" Name " + name + " email :" + email + " pass:" + password);
   if (!name || !email || !password || !password2) {
     errors.push({ msg: "Please fill in all fields" });
   }
@@ -44,7 +44,7 @@ router.post("/register", (req, res) => {
     errors.push({ msg: "password atleast 6 characters" });
   }
   if (errors.length > 0) {
-    res.render("register", {
+    res.json({
       errors: errors,
       name: name,
       email: email,
