@@ -1,6 +1,6 @@
 import { React } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
-import Head from 'next/head';
+import Layout from '../components/Layout/Layout';
 
 export default function Profile() {
   const { user, error, isLoading } = useUser();
@@ -9,18 +9,16 @@ export default function Profile() {
   if (error) return <div>{error.message}</div>;
   if (user) {
     return (
-      <div>
-        <Head>
-          <title>Grateful App: Profile</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <main>
+      <Layout user={user}>
+        <div>
           <h1>
-            Welcome
+            Profile:
             {user.name}
           </h1>
-        </main>
-      </div>
+          <h2>Settings</h2>
+          Send weekly gratitudes (SMS)
+        </div>
+      </Layout>
     );
   }
 

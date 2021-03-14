@@ -2,10 +2,9 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  username VARCHAR(50),
-  email VARCHAR(50),
-  password VARCHAR(250)
+  sub VARCHAR(70) NOT NULL UNIQUE,
+  created_at timestamptz NOT NULL DEFAULT now()
 );
 
-INSERT INTO users (username, email, password)
-VALUES ('Test User', 'testuser@email.com', 'password123' )
+INSERT INTO users (sub)
+VALUES ('first-sub-test')
