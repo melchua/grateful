@@ -3,14 +3,13 @@
 
 const client = require("./connection");
 
-const getAllGratitudes = () => {
+const deleteGratitude = (id) =>
   client
-    .query("select id, description, user_id FROM gratitudes")
-    .then((response) => {
-      return response.rows;
+    .query("DELETE FROM gratitudes WHERE id = $1 RETURNING *", [id])
+    .then((res) => {
+      return res.rows;
     });
-};
 
 module.exports = {
-  getAllGratitudes,
+  deleteGratitude,
 };

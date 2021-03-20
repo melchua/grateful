@@ -7,6 +7,7 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const userRouter = require("./routes/users");
 const messagesRouter = require("./routes/messages");
+const gratitudesRouter = require("./routes/gratitudes");
 require("./config/passport-google")(passport);
 require("./config/passport")(passport);
 var cors = require("cors");
@@ -43,6 +44,7 @@ app.use((req, res, next) => {
 app.use("/", require("./routes/index"));
 app.use("/api/users", userRouter);
 app.use("/api/messages", messagesRouter);
+app.use("/api/gratitudes", gratitudesRouter);
 
 app.listen(port, () => {
   console.log("app is listening on port ", port);

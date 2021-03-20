@@ -1,10 +1,16 @@
-import express from "express";
+const express = require("express");
 const router = express.Router();
-// import gratitudeQueries from "../db/gratitude-queries.js";
+gratitudeQueries = require("../db/gratitude-queries.js");
 
-// GET /gratitudes
-router.get("/", (req, res) => {
-  userqueries.getAllUsers((users) => {
-    res.json(users);
+// DELETE /gratitudes/:id
+router.delete("/:id", (req, response) => {
+  if (!req.params.id) return;
+  // remove item from db
+  gratitudeQueries.deleteGratitude(req.params.id).then((res) => {
+    if (res.length > 0) {
+      response.status(200).send(res);
+    } else response.status(500).send([]);
   });
 });
+
+module.exports = router;

@@ -28,3 +28,15 @@ export const getGratitudesByUserId = async (userId) => {
   }
   return [];
 };
+
+export const deleteGratitude = async (id) => {
+  try {
+    const deletedGratitudes = await axios.delete(
+      `${process.env.NEXT_PUBLIC_NODE_SERVER}/api/gratitudes/${id}`,
+    );
+    return deletedGratitudes;
+  } catch (err) {
+    console.error('err', err);
+  }
+  return [];
+};

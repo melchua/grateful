@@ -3,7 +3,11 @@ import {
 } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 import styles from '../styles/Home.module.css';
-import { postGratitude, getGratitudesByUserId } from '../services/gratitudes';
+import {
+  postGratitude,
+  getGratitudesByUserId,
+  deleteGratitude,
+} from '../services/gratitudes';
 import { addUserBySub, getUserBySub } from '../services/users';
 import Layout from '../components/Layout/Layout';
 
@@ -50,6 +54,14 @@ export default function Home() {
     e.preventDefault();
     setInputValue(e.target.value);
   };
+
+  const handleDelete = async (e, id) => {
+    e.preventDefault();
+    await deleteGratitude(id);
+    getGratitudes();
+    setInputValue('');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await postGratitude(currentUser.id, inputValue);
@@ -95,6 +107,9 @@ export default function Home() {
                 <div key={id} className={styles.gratitudeItem}>
                   {description}
                   <div className={styles.timestamp}>{createdAt}</div>
+                  <button type="submit" onClick={(e) => handleDelete(e, id)}>
+                    Delete
+                  </button>
                 </div>
               );
             })}
