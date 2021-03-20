@@ -88,11 +88,11 @@ export default function Home() {
             </button>
           </form>
 
-          <div>
-            {gratitudes.map((gratitude) => {
+          <div className={styles.gratitudeContainer}>
+            {gratitudes.reverse().map((gratitude) => {
               const { id, description, created_at: createdAt } = gratitude;
               return (
-                <div key={id}>
+                <div key={id} className={styles.gratitudeItem}>
                   {description}
                   <div className={styles.timestamp}>{createdAt}</div>
                 </div>
