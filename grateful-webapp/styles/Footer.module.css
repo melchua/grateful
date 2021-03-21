@@ -1,0 +1,18 @@
+.avatar {
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.container {
+  padding: 7px 25px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+  background-color: #bcbcbc;
+  position: fixed;
+  bottom: 0;
+}

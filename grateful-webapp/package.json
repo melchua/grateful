@@ -6,7 +6,7 @@
     "proxy": "NODE_ENV='development' node proxyserver.js",
     "dev": "next -p 7000",
     "build": "next build",
-    "start": "next start",
+    "start": "next -p 7000 start",
     "pretest": "./node_modules/.bin/eslint --ignore-path .gitignore . --fix"
   },
   "dependencies": {

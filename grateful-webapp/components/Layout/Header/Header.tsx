@@ -1,28 +1,14 @@
 // eslint-disable-next-line
 import React from "react";
+import Link from 'next/link';
 import styles from '../../../styles/Header.module.css';
 
-type Proptype = {
-  user: Object;
-};
-
-const Header = ({ user }: Proptype) => (
+const Header = () => (
   <div className={styles.container}>
     <nav>
-      {user && (
-      <a href="/profile">
-        <img className={styles.avatar} src={user.picture} alt="avatar" />
-      </a>
-      )}
-      <div>
-        {user ? (
-          <a href="/api/auth/logout" data-testid="logout">
-            logout
-          </a>
-        ) : (
-          <a href="/api/auth/login">Login</a>
-        )}
-      </div>
+      <Link href="/">
+        <a>Everyday Gratitude</a>
+      </Link>
     </nav>
   </div>
 );

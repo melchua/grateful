@@ -1,0 +1,12 @@
+.gratitudeContainer {
+  color: black;
+  margin: 20px;
+  padding: 20px;
+  border: 1px dashed lightgrey;
+  border-radius: 5px;
+}
+
+.timestamp {
+  color: silver;
+  font-size: 12px;
+}

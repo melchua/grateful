@@ -1,10 +1,12 @@
-.avatar {
-  vertical-align: middle;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-
 .container {
-  padding: 20px;
+  padding: 7px 25px;
+  background-color: #bcbcbc;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: white;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 30px;
 }

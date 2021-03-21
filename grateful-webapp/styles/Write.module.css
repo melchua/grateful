@@ -1,0 +1,60 @@
+.inputGratitude {
+  resize: none;
+  padding: 40px 30px;
+  margin: 7px;
+  width: 100%;
+  font-size: 24px;
+  background-color: #4c4c4c;
+  color: white;
+}
+
+.submitButton {
+  width: 30%;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 500;
+  color: whitesmoke;
+  text-transform: uppercase;
+}
+
+.gratefulForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputGratitude:focus {
+  background-color: #4c4c4c;
+  outline: 1px solid lightgrey;
+}
+
+.gratitudeContainer {
+  margin: 20px;
+  padding: 20px;
+}
+
+.timestamp {
+  color: silver;
+  font-size: 12px;
+}
+
+.gratitudeItem {
+  padding-bottom: 10px;
+}
+
+.writeContainer {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  flex-direction: column;
+}
+
+/* @media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+} */
