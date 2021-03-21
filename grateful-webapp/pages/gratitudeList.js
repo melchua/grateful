@@ -44,7 +44,6 @@ const GratitudeList = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
-  console.log('gratitudes', gratitudes);
   return (
     <Layout user={user}>
       <div className={styles.gratitudeContainer}>
