@@ -11,6 +11,9 @@ const getUserById = (id) => {
     .query("SELECT * FROM users WHERE id = $1;", [id])
     .then((response) => {
       return response.rows[0];
+    })
+    .catch((err) => {
+      console.err("err", err);
     });
 };
 
@@ -38,6 +41,10 @@ const addUserBySub = (sub) => {
     .query("INSERT INTO users(sub) VALUES($1)", [sub])
     .then((res) => {
       console.log("added");
+    })
+    .catch((err) => {
+      console.log("err", err);
+      return err;
     });
 };
 
@@ -57,6 +64,8 @@ const addGratitudeByUserId = (user_id, description) => {
 };
 
 const getGratitudesByUserId = (user_id) => {
+  if (!user_id) return [];
+
   return client
     .query(
       "select gratitudes.id, description, created_at FROM gratitudes JOIN users ON users.id = user_id WHERE user_id = $1",
@@ -64,6 +73,10 @@ const getGratitudesByUserId = (user_id) => {
     )
     .then((response) => {
       return response.rows;
+    })
+    .catch((err) => {
+      console.log("err", err);
+      return [];
     });
 };
 
