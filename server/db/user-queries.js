@@ -48,6 +48,7 @@ const addUserBySub = (sub) => {
     });
 };
 
+
 const addGratitudeByUserId = (user_id, description) => {
   return client
     .query(
@@ -79,6 +80,7 @@ const getGratitudesByUserId = (user_id) => {
       return [];
     });
 };
+
 
 module.exports = {
   getAllUsers,

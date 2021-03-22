@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import sendMessage from '../../services/twilio.ts';
+import { updateUserById } from '../../services/users';
 
-export default function VerifyPhoneNumberButton() {
+export default function VerifyPhoneNumberButton(props) {
   const [verifying, setVerifying] = useState(false);
   const [code, setCode] = useState('');
   const [codeInputted, setCodeInputted] = useState('');
@@ -13,12 +15,14 @@ export default function VerifyPhoneNumberButton() {
       .join('');
     setCode(generateCoded);
     console.log(generateCoded);
-    // send verification code with sendText(code, phone number)
+    sendMessage(generateCoded, phoneNumber);
   };
 
   const confirmCode = (userCode: string) => {
     // eslint-disable-next-line no-unused-expressions
-    userCode === code ? console.log('match') : console.log('no match');
+    userCode === code // eslint-disable-next-line react/prop-types
+      ? updateUserById(props.currentUser, phoneNumber)
+      : console.log('no match');
   };
 
   return (

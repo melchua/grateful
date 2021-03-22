@@ -28,3 +28,14 @@ export const addUserBySub = (sub) => {
     console.error("err", err);
   }
 };
+
+export const updateUserById = (id, phoneNumber) => {
+  try {
+    axios.put(`${process.env.NEXT_PUBLIC_NODE_SERVER}/api/users/${id}`, {
+      phoneNumber,
+    });
+  } catch (err) {
+    // eslint-disable-next-line
+    console.log("err", err);
+  }
+};

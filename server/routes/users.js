@@ -15,6 +15,12 @@ router.post("/", (req, res) => {
   res.status(201).send();
 });
 
+// PUT /users/:user_id
+router.put("/:id", (req, res) => {
+  console.log(req.params.id)
+  console.log(req.body)
+})
+
 // GET /users/gratitudes/:user_id
 router.get("/gratitudes/:id", (req, res) => {
   userqueries.getGratitudesByUserId(req.params.id).then((gratitudes) => {
