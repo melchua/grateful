@@ -14,6 +14,7 @@ export default function VerifyPhoneNumberButton(props) {
       .map(() => Math.random().toString(36)[2])
       .join('');
     setCode(generateCoded);
+    // use this to confirm your phone number
     console.log(generateCoded);
     sendMessage(generateCoded, phoneNumber);
   };
