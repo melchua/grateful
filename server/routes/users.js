@@ -17,8 +17,8 @@ router.post("/", (req, res) => {
 
 // PUT /users/:user_id
 router.put("/:id", (req, res) => {
-  console.log(req.params.id)
-  console.log(req.body)
+  userqueries.updateUserById(req.params.id, req.body.phoneNumber);
+  res.status(201).send();
 })
 
 // GET /users/gratitudes/:user_id

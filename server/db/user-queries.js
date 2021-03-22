@@ -48,6 +48,20 @@ const addUserBySub = (sub) => {
     });
 };
 
+const updateUserById = (user_id, phone_number) => {
+  return client
+    .query(
+      "UPDATE users SET phone = $1, is_verified = TRUE WHERE id = $2",
+      [phone_number, user_id]
+    )
+    .then((res) => {
+      console.log("updated")
+    })
+    .catch((err) => {
+      console.log("err", err)
+      return err;
+    })
+}
 
 const addGratitudeByUserId = (user_id, description) => {
   return client
@@ -87,6 +101,7 @@ module.exports = {
   getUserById,
   getUserByEmail,
   addUserBySub,
+  updateUserById,
   getGratitudesByUserId,
   addGratitudeByUserId,
   getUserBySub,
