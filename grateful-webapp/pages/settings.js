@@ -4,6 +4,7 @@ import { useUser } from '@auth0/nextjs-auth0';
 import Layout from '../components/Layout/Layout';
 import { CurrentUserContext } from '../context/CurrentUserContext.tsx';
 import { addUserBySub, getUserBySub } from '../services/users';
+import VerifyPhoneNumberButton from '../components/VerifyPhoneNumberButton/VerifyPhoneNumberButton.tsx';
 
 export default function Settings() {
   const { user } = useUser();
@@ -20,10 +21,15 @@ export default function Settings() {
   }, [user, setCurrentUser]);
 
   console.log('currentUser ', currentUser);
-  console.log('user ', user);
+
   return (
     <Layout user={user}>
       <h3>Settings</h3>
+      {currentUser.is_verified ? (
+        <h3>You are verified</h3>
+      ) : (
+        <VerifyPhoneNumberButton />
+      )}
     </Layout>
   );
 }
