@@ -12,7 +12,6 @@ const Write = () => {
   const [inputValue, setInputValue] = useState('');
   const { user, isLoading, error } = useUser();
   const router = useRouter();
-
   // eslint-disable-next-line
   const handleInputChange = (e) => {
     e.preventDefault();
