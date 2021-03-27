@@ -13,6 +13,7 @@ const GratitudeList = () => {
   const [gratitudes, setGratitudes] = useState([]);
   const { user, isLoading, error } = useUser();
 
+  console.log('gratitudes: ', gratitudes);
   // double check if this is the right dependency for ths useCallback
   const getGratitudes = useCallback(async () => {
     if (currentUser) {

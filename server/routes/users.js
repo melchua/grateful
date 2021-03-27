@@ -18,6 +18,7 @@ router.post("/", (req, res) => {
 // GET /users/gratitudes/:user_id
 router.get("/gratitudes/:id", (req, res) => {
   userqueries.getGratitudesByUserId(req.params.id).then((gratitudes) => {
+    console.log("running", gratitudes);
     res.json(gratitudes);
   });
 });
