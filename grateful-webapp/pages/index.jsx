@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <Layout user={user}>
       {user ? (
-        <div>
+        <div className={styles.container}>
           <div className={styles.writeContainer}>
             <Link href="/write">
               <a>

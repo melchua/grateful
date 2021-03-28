@@ -83,7 +83,7 @@ const getGratitudesByUserId = (user_id) => {
 
   return client
     .query(
-      "select gratitudes.id, description, gratitudes.created_at FROM gratitudes JOIN users ON users.id = user_id WHERE user_id = $1",
+      "select gratitudes.id, description, gratitudes.created_at FROM gratitudes JOIN users ON users.id = user_id WHERE user_id = $1 ORDER BY id DESC",
       [parseInt(user_id)]
     )
     .then((response) => {

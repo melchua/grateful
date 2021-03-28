@@ -5,7 +5,9 @@ import styles from '../styles/Write.module.css';
 import { CurrentUserContext } from '../context/CurrentUserContext.tsx';
 import { addUserBySub, getUserBySub } from '../services/users';
 import { postGratitude } from '../services/gratitudes';
+import GratitudeHeader from '../components/GratitudeHeader/GratitudeHeader';
 import Layout from '../components/Layout/Layout';
+import Button from '../components/Button/Button.tsx';
 
 const Write = () => {
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
@@ -41,27 +43,27 @@ const Write = () => {
 
   return (
     <Layout user={user}>
-      <form className={styles.gratefulForm}>
-        <textarea
-          autoFocus
-          placeholder="I am grateful for..."
-          className={styles.inputGratitude}
-          rows={20}
-          cols={50}
-          type="text"
-          value={inputValue}
-          onChange={(e) => handleInputChange(e)}
-          maxLength={250}
-          name="description"
-        />
-        <button
-          className={styles.submitButton}
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Give Gratitude
-        </button>
-      </form>
+      <div className={styles.container}>
+        <div className={styles.gratefulForm}>
+          <GratitudeHeader />
+
+          <textarea
+            autoFocus
+            placeholder="I am grateful for..."
+            className={styles.inputGratitude}
+            rows={10}
+            cols={50}
+            type="text"
+            value={inputValue}
+            onChange={(e) => handleInputChange(e)}
+            maxLength={250}
+            name="description"
+          />
+          <footer className={styles.footer}>
+            <Button onClick={handleSubmit}>Give Gratitude</Button>
+          </footer>
+        </div>
+      </div>
     </Layout>
   );
 };

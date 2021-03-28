@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "proposal-temporal": "^0.7.0"
+  }
+}

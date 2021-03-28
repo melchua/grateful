@@ -1,8 +1,9 @@
 .container {
   padding: 0;
   width: 100vw;
-  height: 100vh;
-  background-image: linear-gradient(#e5eff5, #9db5c7);
+  /* height: 100vh; */
+  /* background-image: linear-gradient(#e5eff5, #9db5c7); */
+  background: #f2f9ff;
 }
 
 .main {
@@ -12,4 +13,5 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  background: white;
 }
