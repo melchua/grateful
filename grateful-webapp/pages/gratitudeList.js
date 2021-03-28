@@ -7,13 +7,15 @@ import { CurrentUserContext } from '../context/CurrentUserContext.tsx';
 import { addUserBySub, getUserBySub } from '../services/users';
 import { getGratitudesByUserId, deleteGratitude } from '../services/gratitudes';
 import Layout from '../components/Layout/Layout';
+import { convertLegacyToTemporal, getHumanDateString } from '../utils/date.ts';
+import Button from '../components/Button/Button.tsx';
 
 const GratitudeList = () => {
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
   const [gratitudes, setGratitudes] = useState([]);
+  const [activeGratitudeId, setActiveGratitudeId] = useState(null);
   const { user, isLoading, error } = useUser();
 
-  console.log('gratitudes: ', gratitudes);
   // double check if this is the right dependency for ths useCallback
   const getGratitudes = useCallback(async () => {
     if (currentUser) {
@@ -22,10 +24,21 @@ const GratitudeList = () => {
     }
   }, [currentUser]);
 
-  const handleDelete = async (e, id) => {
+  const handleDelete = async (e) => {
     e.preventDefault();
-    await deleteGratitude(id);
+    await deleteGratitude(activeGratitudeId);
     getGratitudes();
+  };
+
+  const handleClickItem = (e, id) => {
+    e.preventDefault();
+    setActiveGratitudeId(id);
+  };
+
+  const handleKeyDown = (e) => {
+    e.preventDefault();
+    // console.log("key", e.key);
+    // TODO: Add keyboard handling using the key index
   };
 
   useEffect(() => {
@@ -45,21 +58,55 @@ const GratitudeList = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
+  const activeGratitude = gratitudes.find(
+    (gratitude) => gratitude.id === activeGratitudeId,
+  );
+
   return (
     <Layout user={user}>
       <div className={styles.gratitudeContainer}>
-        {gratitudes.reverse().map((gratitude) => {
-          const { id, description, created_at: createdAt } = gratitude;
-          return (
-            <div key={id} className={styles.gratitudeItem}>
-              {description}
-              <div className={styles.timestamp}>{createdAt}</div>
-              <button type="submit" onClick={(e) => handleDelete(e, id)}>
-                Delete
-              </button>
+        <div className={styles.list}>
+          {gratitudes.map((gratitude) => {
+            const { id, description, created_at: createdAt } = gratitude;
+            const isActiveItem = Boolean(activeGratitudeId === id);
+            const date = getHumanDateString(convertLegacyToTemporal(createdAt));
+            return (
+              <div
+                key={id}
+                // tabIndex={0}
+                role="button"
+                className={
+                  isActiveItem
+                    ? styles.gratitudeItemActive
+                    : styles.gratitudeItem
+                }
+                onClick={(e) => handleClickItem(e, id)}
+                onKeyDown={(e) => handleKeyDown(e, id)}
+              >
+                <p className={styles.truncate}>{description}</p>
+                <div className={styles.timestamp}>{date}</div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className={styles.gratitudeDisplay}>
+          {activeGratitude ? (
+            <div>
+              <div className={styles.date}>
+                {getHumanDateString(
+                  convertLegacyToTemporal(activeGratitude.created_at),
+                )}
+              </div>
+              {activeGratitude.description}
+              <div>
+                <Button onClick={(e) => handleDelete(e)}>🗑️</Button>
+              </div>
             </div>
-          );
-        })}
+          ) : (
+            ''
+          )}
+        </div>
       </div>
     </Layout>
   );
