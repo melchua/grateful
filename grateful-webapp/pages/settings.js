@@ -5,6 +5,7 @@ import Layout from '../components/Layout/Layout';
 import { CurrentUserContext } from '../context/CurrentUserContext.tsx';
 import { addUserBySub, getUserBySub } from '../services/users';
 import VerifyPhoneNumberButton from '../components/VerifyPhoneNumberButton/VerifyPhoneNumberButton.tsx';
+import Slider from '../components/Slider/Slider.tsx';
 
 export default function Settings() {
   const { user } = useUser();
@@ -24,7 +25,9 @@ export default function Settings() {
 
   return (
     <Layout user={user}>
-      <h3>Settings</h3>
+      <h2>Settings</h2>
+      <h3>Receive Sms?</h3>
+      <Slider locked={!currentUser.is_verified} />
       {currentUser.is_verified ? (
         <h3>You are verified</h3>
       ) : (
