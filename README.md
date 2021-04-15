@@ -1,5 +1,7 @@
 ## Gratitude App
 ---
+https://user-images.githubusercontent.com/16279091/114817260-8350b500-9d6e-11eb-91c4-1f6861196759.mov
+
 ### MVP:
 A simple app that allows users to enter a short (tweet length) gratitude and have the app send them texts to remind them of past gratitudes. Users will be able to access their past gratitudes and will be able to easily tell how many gratitudes they have written and submitted. The app will then send an SMS message to the users a specified number of times during the week (users will be able to turn modify and turn on/off this setting). 
 
