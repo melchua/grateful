@@ -20,8 +20,6 @@ export default function Settings() {
     }
   }, [user, setCurrentUser]);
 
-  console.log('currentUser ', currentUser);
-
   return (
     <Layout user={user}>
       <h3>Settings</h3>

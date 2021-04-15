@@ -1,6 +1,7 @@
 import { React } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 import Layout from '../components/Layout/Layout';
+import MessageButton from '../components/MessageButton/MessageButton';
 
 export default function Profile() {
   const { user, error, isLoading } = useUser();
@@ -17,6 +18,7 @@ export default function Profile() {
           </h1>
           <h2>Settings</h2>
           Send weekly gratitudes (SMS)
+          <MessageButton />
         </div>
       </Layout>
     );
