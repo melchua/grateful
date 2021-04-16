@@ -33,10 +33,14 @@ export default function VerifyPhoneNumberButton(props) {
   };
 
   const confirmCode = (userCode: string) => {
-    // eslint-disable-next-line no-unused-expressions
-    userCode === code // eslint-disable-next-line react/prop-types
-      ? updateUserById(props.currentUser, phoneNumber)
-      : setError('incorrect code');
+    if (userCode === code) {
+      // eslint-disable-next-line react/prop-types
+      updateUserById(props.currentUser, phoneNumber);
+      setError('');
+      setVerifying(false);
+    } else {
+      setError('incorrect code');
+    }
   };
 
   return (
