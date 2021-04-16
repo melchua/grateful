@@ -2,7 +2,7 @@ import { useState } from 'react';
 import sendMessage from '../../services/twilio.ts';
 import { updateUserById } from '../../services/users';
 
-export default function VerifyPhoneNumberButton(props) {
+export default function VerifyPhoneNumberButton(props: any) {
   const [verifying, setVerifying] = useState(false);
   const [code, setCode] = useState('');
   const [codeInputted, setCodeInputted] = useState('');
@@ -34,10 +34,10 @@ export default function VerifyPhoneNumberButton(props) {
 
   const confirmCode = (userCode: string) => {
     if (userCode === code) {
-      // eslint-disable-next-line react/prop-types
-      updateUserById(props.currentUser, phoneNumber);
+      updateUserById(props.currentUser.id, phoneNumber);
       setError('');
       setVerifying(false);
+      props.setCurrentUser({ ...props.currentUser, is_verified: true });
     } else {
       setError('incorrect code');
     }

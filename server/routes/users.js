@@ -21,6 +21,12 @@ router.put("/:id", (req, res) => {
   res.status(201).send();
 })
 
+// for testing purposes
+router.post("/veri/:id", (req, res) => {
+  userqueries.setVerifiedFalse(req.params.id);
+  res.status(201).send();
+})
+
 // GET /users/gratitudes/:user_id
 router.get("/gratitudes/:id", (req, res) => {
   userqueries.getGratitudesByUserId(req.params.id).then((gratitudes) => {

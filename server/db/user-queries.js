@@ -63,6 +63,21 @@ const updateUserById = (user_id, phone_number) => {
     })
 }
 
+const setVerifiedFalse = (user_id) => {
+  return client
+  .query(
+    "UPDATE users SET is_verified = False WHERE id = $1",
+    [user_id]
+  )
+  .then((res) => {
+    console.log("updated")
+  })
+  .catch((err) => {
+    console.log("err", err)
+    return err;
+  })
+}
+
 const addGratitudeByUserId = (user_id, description) => {
   return client
     .query(
@@ -105,4 +120,5 @@ module.exports = {
   getGratitudesByUserId,
   addGratitudeByUserId,
   getUserBySub,
+  setVerifiedFalse
 };

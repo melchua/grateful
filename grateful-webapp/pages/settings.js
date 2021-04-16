@@ -31,7 +31,10 @@ export default function Settings() {
       {currentUser.is_verified ? (
         <h3>You are verified</h3>
       ) : (
-        <VerifyPhoneNumberButton currentUser={currentUser.id} />
+        <VerifyPhoneNumberButton
+          currentUser={currentUser}
+          setCurrentUser={setCurrentUser}
+        />
       )}
     </Layout>
   );
