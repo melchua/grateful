@@ -22,7 +22,7 @@ const Header = () => {
           <Link href="/gratitudeList">
             <a className={styles.navLink}>Gratitudes</a>
           </Link>
-          <Link href="/">
+          <Link href="/about">
             <a className={styles.navLink}>About</a>
           </Link>
           <Link href="/settings">
