@@ -7,8 +7,21 @@ export default function VerifyPhoneNumberButton(props) {
   const [code, setCode] = useState('');
   const [codeInputted, setCodeInputted] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [error, setError] = useState('');
+
+  const isValidPhoneNumber = (phone: string) => {
+    const found = phone.search(
+      /^(\+{1}\d{2,3}\s?[(]{1}\d{1,3}[)]{1}\s?\d+|\+\d{2,3}\s{1}\d+|\d+){1}[\s|-]?\d+([\s|-]?\d+){1,2}$/,
+    );
+    return found > -1;
+  };
 
   const sendCode = () => {
+    if (!isValidPhoneNumber(phoneNumber)) {
+      setError('Please enter a valid phone number');
+      return;
+    }
+
     setVerifying(true);
     const generateCoded = [...Array(4)]
       .map(() => Math.random().toString(36)[2])
@@ -23,7 +36,7 @@ export default function VerifyPhoneNumberButton(props) {
     // eslint-disable-next-line no-unused-expressions
     userCode === code // eslint-disable-next-line react/prop-types
       ? updateUserById(props.currentUser, phoneNumber)
-      : console.log('no match');
+      : setError('incorrect code');
   };
 
   return (
@@ -51,6 +64,7 @@ export default function VerifyPhoneNumberButton(props) {
           </button>
         </>
       )}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 }

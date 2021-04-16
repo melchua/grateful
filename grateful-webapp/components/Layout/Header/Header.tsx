@@ -25,7 +25,7 @@ const Header = () => {
           <Link href="/">
             <a className={styles.navLink}>About</a>
           </Link>
-          <Link href="/">
+          <Link href="/settings">
             <a className={styles.navLink}>Profile</a>
           </Link>
           {true ? (
