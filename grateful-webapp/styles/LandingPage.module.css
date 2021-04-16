@@ -1,0 +1,12 @@
+.landingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2rem;
+  margin: 4rem;
+}
+
+.landingContainer h4 {
+  margin-top: 0;
+  margin-bottom: 6rem;
+}
