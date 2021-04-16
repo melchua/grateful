@@ -6,12 +6,7 @@ import styles from '../styles/Home.module.css';
 import { addUserBySub, getUserBySub } from '../services/users'; // TODO: Refactor into a reusable hook
 import Layout from '../components/Layout/Layout';
 import WriteNewButton from '../components/WriteNewButton/WriteNewButton.tsx';
-
-const NotLoggedIn = () => (
-  <div>
-    <a href="/api/auth/login">Login</a>
-  </div>
-);
+import LandingPage from '../components/LandingPage/LandingPage.tsx';
 
 export default function Home() {
   const { user, isLoading, error } = useUser();
@@ -49,7 +44,7 @@ export default function Home() {
           </div>
         </div>
       ) : (
-        <NotLoggedIn />
+        <LandingPage />
       )}
     </Layout>
   );
