@@ -99,7 +99,7 @@ const GratitudeList = () => {
                 )}
               </div>
               {activeGratitude.description}
-              <div>
+              <div className={styles.footer}>
                 <Button onClick={(e) => handleDelete(e)}>🗑️</Button>
               </div>
             </div>

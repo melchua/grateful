@@ -38,6 +38,12 @@ const Write = () => {
     }
   }, [user, setCurrentUser]);
 
+  const onEnterPress = (e) => {
+    if (e.keyCode === 13 && e.shiftKey === false) {
+      handleSubmit(e);
+    }
+  };
+
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
@@ -51,13 +57,14 @@ const Write = () => {
             autoFocus
             placeholder="I am grateful for..."
             className={styles.inputGratitude}
-            rows={10}
+            // rows={6}
             cols={50}
             type="text"
             value={inputValue}
             onChange={(e) => handleInputChange(e)}
             maxLength={250}
             name="description"
+            onKeyDown={(e) => onEnterPress(e)}
           />
           <footer className={styles.footer}>
             <Button onClick={handleSubmit}>Give Gratitude</Button>
