@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS schedule;
+DROP TABLE IF EXISTS schedules;
 
-CREATE TABLE schedule (
+CREATE TABLE schedules (
   id SERIAL PRIMARY KEY,
   schedule_period VARCHAR(30)
 );
