@@ -1,6 +1,6 @@
 .inputGratitude {
   resize: none;
-  margin: 5rem 10rem 0;
+  /* margin: 5rem 10rem 0; */
   width: 100%;
   font-size: 40px;
   background-color: #f2f9ff;
@@ -8,6 +8,7 @@
   opacity: 20%;
   border: none;
   font-family: Georgia, "Times New Roman", Times, serif;
+  height: 100%;
 }
 
 .inputGratitude::placeholder {

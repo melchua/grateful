@@ -3,7 +3,7 @@ import Header from './Header/Header.tsx';
 import styles from '../../styles/Layout.module.css';
 
 // eslint-disable-next-line
-const Layout = ({ user, children }) => (
+const Layout = ({ children }) => (
   <div className={styles.container}>
     <Head>
       <title>Grateful App</title>
@@ -19,7 +19,7 @@ const Layout = ({ user, children }) => (
       />
     </Head>
 
-    <Header user={user} />
+    <Header />
     <main className={styles.main}>{children}</main>
   </div>
 );

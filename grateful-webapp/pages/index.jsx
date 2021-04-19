@@ -1,16 +1,15 @@
 import { React, useEffect, useContext } from 'react';
-import Link from 'next/link';
 import { useUser } from '@auth0/nextjs-auth0';
+import { useRouter } from 'next/router';
 import { CurrentUserContext } from '../context/CurrentUserContext.tsx';
-import styles from '../styles/Home.module.css';
 import { addUserBySub, getUserBySub } from '../services/users'; // TODO: Refactor into a reusable hook
 import Layout from '../components/Layout/Layout';
-import WriteNewButton from '../components/WriteNewButton/WriteNewButton.tsx';
 import LandingPage from '../components/LandingPage/LandingPage.tsx';
 
 export default function Home() {
   const { user, isLoading, error } = useUser();
   const [, setCurrentUser] = useContext(CurrentUserContext);
+  const router = useRouter();
 
   // Storing the mapping table with db user_id
   // We will need this association throughout the app
@@ -30,22 +29,9 @@ export default function Home() {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
-  return (
-    <Layout user={user}>
-      {user ? (
-        <div className={styles.container}>
-          <div className={styles.writeContainer}>
-            <Link href="/write">
-              <a>
-                <WriteNewButton />
-              </a>
-            </Link>
-            <div className={styles.title}>Write new</div>
-          </div>
-        </div>
-      ) : (
-        <LandingPage />
-      )}
-    </Layout>
-  );
+  if (user) {
+    router.push('/write');
+  }
+
+  return <Layout user={user}>{user ? <></> : <LandingPage />}</Layout>;
 }
