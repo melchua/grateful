@@ -1,6 +1,6 @@
-import { useContext, useEffect } from 'react';
-
+import { useContext, useEffect, useState } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
+import styles from '../styles/Settings.module.css';
 import Layout from '../components/Layout/Layout';
 import { CurrentUserContext } from '../context/CurrentUserContext.tsx';
 import { addUserBySub, getUserBySub } from '../services/users';
@@ -10,6 +10,7 @@ import Slider from '../components/Slider/Slider.tsx';
 export default function Settings() {
   const { user } = useUser();
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+  const [profileView, setProfileView] = useState(false);
 
   useEffect(() => {
     // Set user and user grats
@@ -23,17 +24,42 @@ export default function Settings() {
 
   return (
     <Layout user={user}>
-      <h2>Settings</h2>
-      <h3>Receive Sms?</h3>
-      <Slider locked={!currentUser.is_verified} />
-      {currentUser.is_verified ? (
-        <h3>You are verified</h3>
-      ) : (
-        <VerifyPhoneNumberButton
-          currentUser={currentUser}
-          setCurrentUser={setCurrentUser}
-        />
-      )}
+      <div className={styles.settingsContainer}>
+        <div className={styles.sidebar}>
+          <div
+            role="button"
+            className={profileView ? styles.activeOption : styles.option}
+            onClick={() => setProfileView(true)}
+            onKeyDown={() => setProfileView(true)}
+          >
+            Profile
+          </div>
+          <div
+            role="button"
+            className={profileView ? styles.option : styles.activeOption}
+            onClick={() => setProfileView(false)}
+            onKeyDown={() => setProfileView(false)}
+          >
+            Notifications
+          </div>
+        </div>
+        {profileView ? (
+          <div>first name last name email</div>
+        ) : (
+          <div>
+            <h3>Receive Sms?</h3>
+            <Slider locked={!currentUser.is_verified} />
+            {currentUser.is_verified ? (
+              <h3>You are verified</h3>
+            ) : (
+              <VerifyPhoneNumberButton
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            )}
+          </div>
+        )}
+      </div>
     </Layout>
   );
 }

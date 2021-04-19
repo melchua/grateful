@@ -1,0 +1,12 @@
+.settingsContainer {
+  display: flex;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.activeOption {
+  border-right: 1px solid black;
+}
