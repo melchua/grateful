@@ -1,12 +1,53 @@
 .settingsContainer {
   display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  height: 100vh;
+  margin-top: 2rem;
 }
 
 .sidebar {
   display: flex;
   flex-direction: column;
+  width: 20vw;
+  background-color: #87a3b9;
+  margin-left: 30px;
+}
+
+.optionContainer {
+  width: 60vw;
 }
 
 .activeOption {
-  border-right: 1px solid black;
+  border-right: 8px solid white;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-left: 3rem;
+  margin-top: 2rem;
+  font-size: 1.6vw;
+}
+
+.option {
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-left: 3rem;
+  margin-top: 2rem;
+  font-size: 1.6vw;
+}
+
+.optionName {
+  margin: 0;
+  margin-left: 2rem;
+}
+
+.topOption {
+  margin-top: 8rem;
+}
+
+.icon {
+  margin: 0;
 }

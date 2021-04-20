@@ -28,11 +28,16 @@ export default function Settings() {
         <div className={styles.sidebar}>
           <div
             role="button"
-            className={profileView ? styles.activeOption : styles.option}
+            className={
+              profileView
+                ? `${styles.activeOption} ${styles.topOption}`
+                : `${styles.option} ${styles.topOption}`
+            }
             onClick={() => setProfileView(true)}
             onKeyDown={() => setProfileView(true)}
           >
-            Profile
+            <p className={styles.icon}>&#x1F464;</p>
+            <p className={styles.optionName}>Profile</p>
           </div>
           <div
             role="button"
@@ -40,13 +45,16 @@ export default function Settings() {
             onClick={() => setProfileView(false)}
             onKeyDown={() => setProfileView(false)}
           >
-            Notifications
+            <p className={styles.icon}>&#x1F514;</p>
+            <p className={styles.optionName}>Notifications</p>
           </div>
         </div>
         {profileView ? (
-          <div>first name last name email</div>
+          <div className={styles.optionContainer}>
+            first name last name email
+          </div>
         ) : (
-          <div>
+          <div className={styles.optionContainer}>
             <h3>Receive Sms?</h3>
             <Slider locked={!currentUser.is_verified} />
             {currentUser.is_verified ? (
