@@ -1,0 +1,79 @@
+.settingsContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  height: 100vh;
+  margin-top: 2rem;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  background-color: #87a3b9;
+  margin-left: 30px;
+}
+
+.formContainer {
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5rem;
+  margin-top: 5rem;
+}
+
+.activeOption {
+  border-right: 8px solid white;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-left: 3rem;
+  margin-top: 2rem;
+  font-size: 1.6vw;
+}
+
+.option {
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-left: 3rem;
+  margin-top: 2rem;
+  font-size: 1.6vw;
+}
+
+.optionName {
+  margin: 0;
+  margin-left: 2rem;
+}
+
+.topOption {
+  margin-top: 6rem;
+}
+
+.icon {
+  margin: 0;
+}
+
+.formLabel {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.input {
+  width: 30vw;
+  border-radius: 25px;
+  border: 2px solid #2699fb;
+  padding: 10px;
+  margin-top: 0.5rem;
+}
+
+.button {
+  width: 10vw;
+}
+
+.saveButton {
+  align-self: baseline;
+}
