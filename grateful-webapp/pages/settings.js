@@ -98,7 +98,7 @@ export default function Settings() {
               />
             </label>
 
-            <Button className={styles.saveButton}>SAVE CHANGES</Button>
+            <Button>SAVE CHANGES</Button>
           </div>
         ) : (
           <div className={styles.formContainer}>
