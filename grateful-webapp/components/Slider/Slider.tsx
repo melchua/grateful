@@ -1,28 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import styles from '../../styles/Slider.module.css';
 
 type PropType = {
   locked: boolean;
+  checked: boolean;
+  setChecked: any;
+  setOther: any;
 };
 
-const Slider = ({ locked }: PropType) => {
-  const [checked, setChecked] = useState(false);
-
+const Slider = ({
+  locked, checked, setChecked, setOther,
+}: PropType) => {
   const handleCheck = () => {
     if (!locked) {
       setChecked(!checked);
+      setOther(checked);
     }
   };
 
   return (
-    <label className={styles.switch} htmlFor="smsCheckbox">
-      <input
-        id="smsCheckbox"
-        type="checkbox"
-        checked={checked}
-        onChange={handleCheck}
-      />
+    // having an input id leads to only the first slider being altered when clicking any slider
+    // eslint-disable-next-line jsx-a11y/label-has-associated-control
+    <label className={styles.switch}>
+      <input type="checkbox" checked={checked} onChange={handleCheck} />
       <span className={styles.slider} />
     </label>
   );
